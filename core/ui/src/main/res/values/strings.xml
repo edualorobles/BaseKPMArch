@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="taximeter_metrics_time">TIME</string>
+    <string name="taximeter_metrics_distance">DISTANCE</string>
+    <string name="taximeter_distance_format" translatable="false">%.2f km</string>
+    <string name="taximeter_supplements_title">SUPPLEMENTS</string>
+    <string name="taximeter_price_breakdown_title">PRICE BREAKDOWN</string>
+    <string name="taximeter_price_breakdown_distance_cost">Cost by distance</string>
+    <string name="taximeter_price_breakdown_time_cost">Cost by time</string>
+    <string name="taximeter_price_breakdown_supplements_cost">Supplements</string>
+    <string name="taximeter_price_breakdown_total">Total</string>
+    <string name="taximeter_price_breakdown_empty_state">Start the ride to see the price breakdown.</string>
+    <string name="currency_format" translatable="false">€%.2f</string>
+    <string name="taximeter_button_start">Start</string>
+    <string name="taximeter_button_stop">Stop</string>
+</resources>
