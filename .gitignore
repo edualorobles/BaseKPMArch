@@ -18,7 +18,8 @@ local.properties
 generated/
 
 # Kotlin Multiplatform
-.kotlin
+build/
+.kotlin/
 
 # iOS / Xcode
 *.xcodeproj/*
@@ -30,3 +31,7 @@ generated/
 xcuserdata/
 DerivedData/
 Pods/
+
+# Ignorar toda la configuración del IDE
+.idea/
+*.iml

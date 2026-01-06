@@ -1,4 +1,4 @@
-rootProject.name = "BaseArchKPM"
+rootProject.name = "BaseKPMArch"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -36,4 +36,3 @@ include(":core:data")
 include(":core:ui")
 
 include(":feature:dashboard")
-include(":androidApp")

@@ -34,7 +34,6 @@ android {
     }
 }
 
-// SOLUCIÓN AL ERROR: Configuración correcta del compilador Kotlin
 kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_1_8)
@@ -43,9 +42,11 @@ kotlin {
 
 dependencies {
     implementation(project(":composeApp"))
+    implementation(project(":di"))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.koin.android)
 }

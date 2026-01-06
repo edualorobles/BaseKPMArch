@@ -1,4 +1,4 @@
-# BaseArchKPM 🚀
+# BaseKPMArch 🚀
 
 **Plantilla de Arquitectura Limpia Modular para Kotlin Multiplatform (KMP).**
 
@@ -45,7 +45,7 @@ Clona tu nuevo repositorio `GymTracker` en tu máquina.
 Debes reemplazar las referencias del template por las de tu nuevo proyecto. Usa `Cmd+Shift+R` (Mac) o `Ctrl+Shift+R` (Win/Linux) en tu IDE.
 
 **A. Renombrar el Proyecto:**
-* Buscar: `BaseArchKPM`
+* Buscar: `BaseKPMArch`
 * Reemplazar por: `GymTracker` (o el nombre de tu app)
 * *Archivos clave afectados:* `settings.gradle.kts`.
 
