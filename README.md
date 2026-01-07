@@ -1,88 +1,149 @@
 # BaseKPMArch 🚀
 
-**Plantilla de Arquitectura Limpia Modular para Kotlin Multiplatform (KMP).**
+**Modular Clean Architecture Template for Kotlin Multiplatform (KMP).**
 
-Este repositorio sirve como punto de partida (Boilerplate) para crear aplicaciones móviles nativas escalables para Android e iOS, compartiendo el 100% de la lógica de negocio y la UI.
+This repository serves as a starting point (*Boilerplate*) to create scalable native mobile applications for Android and iOS, sharing **100% of the business logic and UI**.
 
-Diseñado para ser **Future-Proof**, preparado para Gradle 9.0 y las últimas recomendaciones de Google y JetBrains.
+Designed to be **Future-Proof**, ready for **Gradle 9.0**, and aligned with the latest recommendations from **Google** and **JetBrains**.
 
-## 🛠 Stack Tecnológico
+---
 
-* **Lenguaje:** Kotlin 2.3+ (Multiplatform)
-* **UI:** Compose Multiplatform 1.9+ (Android & iOS)
-* **Inyección de Dependencias:** Koin 4.x (Annotations & Compose support)
+## 🛠 Tech Stack
+
+* **Language:** Kotlin 2.3+ (Multiplatform)
+* **UI:** Compose Multiplatform 1.7+ (Android & iOS)
+* **Dependency Injection:** Koin 4.x (Annotations & Compose support)
 * **Async:** Coroutines & Flow
-* **Arquitectura:** Clean Architecture Modular Estricta
-* **Navegación:** Navigation Compose
+* **Architecture:** Strict Modular Clean Architecture
+* **Navigation:** Jetpack Navigation Compose (Type-Safe)
+* **Networking:** Ktor 3.x (Content Negotiation, Logging, Serialization)
 * **Build System:** Gradle Kotlin DSL + Version Catalog (`libs.versions.toml`)
-* **Plugins Android:** Nuevo plugin `com.android.kotlin.multiplatform.library` para librerías compartidas.
-
-## 📂 Estructura Modular
-
-El proyecto sigue una separación estricta de responsabilidades para garantizar la escalabilidad y testabilidad:
-
-* **`:androidApp`**: Lanzador nativo Android. Configuración mínima, solo lanza la UI compartida.
-* **`:composeApp`**: Librería compartida principal. Contiene el `CompositionLocalProvider`, el tema y el punto de entrada de la UI.
-* **`:di` (Composition Root)**: El único módulo que conoce a todos. Aquí se inicializa Koin y se enlazan las implementaciones (`data`) con las interfaces (`domain`).
-* **`:feature:*`** (ej. `dashboard`): Módulos de pantallas/flujos. Contienen ViewModels y Composables. Ven `:core:domain` y `:core:ui`, pero **nunca** `:core:data`.
-* **`:core:domain`**: Reglas de negocio, Casos de Uso y Modelos puros. No tiene dependencias de framework ni de inyección.
-* **`:core:data`**: Implementación de repositorios y fuentes de datos. No conoce a Koin ni la UI.
-* **`:core:ui`**: Design System, Theme, Tipografía y recursos comunes.
+* **Plugins:** `com.android.kotlin.multiplatform.library` and experimental shared resources support
 
 ---
 
-## 🏗 Cómo usar esta Plantilla (Crear nuevo proyecto)
+## 📂 Modular Structure
 
-Sigue estos pasos rigurosamente para instanciar un nuevo proyecto (ej. *GymTracker*) basado en esta arquitectura.
+The project follows a **strict separation of responsibilities** to ensure scalability and testability:
 
-### 1. Crear el Repositorio
-Usa el botón **"Use this template"** en GitHub para crear tu nuevo repositorio.
+* **`:androidApp`**  
+  Native Android launcher. Minimal configuration. Manages the native *Splash Screen* and initial lifecycle.
 
-### 2. Clonar
-Clona tu nuevo repositorio `GymTracker` en tu máquina.
+* **`:composeApp`**  
+  Main shared library. Contains:
+  - `AppNavigation`
+  - `CompositionLocalProvider`
+  - Theme
+  - UI entry point
 
-### 3. Renombrado Global (Search & Replace)
-Debes reemplazar las referencias del template por las de tu nuevo proyecto. Usa `Cmd+Shift+R` (Mac) o `Ctrl+Shift+R` (Win/Linux) en tu IDE.
+* **`:di` (Composition Root)**  
+  The **only module that knows all others**.  
+  Koin is initialized here, binding implementations (`data`) to interfaces (`domain`).
 
-**A. Renombrar el Proyecto:**
-* Buscar: `BaseKPMArch`
-* Reemplazar por: `GymTracker` (o el nombre de tu app)
-* *Archivos clave afectados:* `settings.gradle.kts`.
+* **`:feature:*`** (e.g. `dashboard`)  
+  Vertical screen/flow modules.
+  - ViewModels
+  - Composables
+  - Presentation logic  
+    They depend on `:core:domain` and `:core:ui`, but **never** on `:core:data`.
 
-**B. Renombrar el Paquete Base:**
-* Buscar: `es.edualorobles.basekpmarch`
-* Reemplazar por: `com.tundominio.gymtracker`
-* *Archivos clave afectados:* Todos los `build.gradle.kts` (propiedad `namespace`), `AndroidManifest.xml` y cabeceras de archivos Kotlin.
+* **`:core:domain`**  
+  Business rules, Use Cases and pure Models.  
+  No framework or dependency injection dependencies.
 
-### 4. Reestructuración de Carpetas (Refactor)
-Al cambiar el paquete, debes mover las carpetas físicas para que coincidan con la nueva estructura.
+* **`:core:data`**  
+  Repository implementations, HTTP client (Ktor) and data sources.  
+  Knows nothing about Koin or UI.
 
-1.  En Android Studio, desmarca "Compact Middle Packages" en el árbol del proyecto.
-2.  Renombra/Mueve la ruta de carpetas:
-  * De: `src/.../kotlin/es/edualorobles/basekpmarch`
-  * A: `src/.../kotlin/com/tundominio/gymtracker`
-3.  **Repite esto en todos los módulos:** `:composeApp`, `:androidApp`, `:di`, `:core:*`, `:feature:*`.
-
-### 5. Configuración de Identificadores Nativos
-* **Android (`androidApp/build.gradle.kts`):**
-  * Verifica `applicationId` (ej. `com.gymtracker.android`).
-  * Actualiza `versionCode` y `versionName`.
-* **iOS (`iosApp.xcodeproj`):**
-  * Abre el proyecto en Xcode.
-  * Cambia el **Bundle Identifier** y el **Display Name**.
-
-### 6. Sincronización Final
-1.  Ejecuta `./gradlew clean` en la terminal.
-2.  Dale a **Sync Project with Gradle Files**.
-3.  Compila (`Build > Make Project`) para asegurar que todo está correcto.
+* **`:core:ui`**  
+  Design System, Colors, Typography and shared resources.
 
 ---
 
-## 📦 Gestión de Versiones
+## 🚀 Quick Start (Generate a New Project)
 
-Todas las versiones se centralizan en `gradle/libs.versions.toml`.
-Para actualizar una librería (ej. Compose, Kotlin), edita ese archivo y sincroniza Gradle.
+This template includes an automation script (`setup_project.sh`) that sets up your new project in seconds, automatically renaming packages, directories and configuration files.
 
-## 🤝 Autor
-**Edu Alo Robles**
-*Arquitectura diseñada para la eficiencia y la escalabilidad.*
+### 1. Clone the Repository
+
+```bash
+git clone <url-of-this-repo> NewProject
+cd NewProject
+```
+
+### 2. Run the Setup Script
+
+Run the script from the project root.  
+You will be prompted for:
+- Project name (e.g. `GymTracker`)
+- Base package (e.g. `com.gymtracker.app`)
+
+```bash
+./setup_project.sh
+```
+
+### 3. Cleanup and First Build
+
+Once the script finishes successfully:
+
+```bash
+rm setup_project.sh
+```
+
+(Optional) Reset Git history:
+
+```bash
+rm -rf .git && git init
+```
+
+Then:
+
+* Open Android Studio
+* Run **Sync Project with Gradle Files**
+* Run the app (**Run `androidApp`**) to verify everything compiles correctly
+
+---
+
+## 🎨 How to Customize App Icon & Splash Screen
+
+This project is configured with native Splash Screens for both platforms. Follow these steps to update the branding for a new project.
+
+### 🍎 iOS
+
+1.  **App Icon**:
+  * Generate your iOS app icons (sizes 20pt to 1024pt).
+  * Replace the contents of `iosApp/iosApp/Assets.xcassets/AppIcon.appiconset` with your new images.
+  * *Tip:* Ensure the 1024x1024 file is opaque (no transparency) for the App Store.
+
+2.  **Splash Screen (Launch Screen)**:
+  * **Logo**: Replace the images in `iosApp/iosApp/Assets.xcassets/SplashLogo.imageset` (1x, 2x, 3x) with your transparent logo.
+  * **Background Color**: Open `iosApp/iosApp/LaunchScreen.storyboard` in Xcode. Select the main View and change the `Background` property.
+  * **Important**: If you rename the storyboard file, ensure the filename has **NO spaces** (e.g., use `LaunchScreen.storyboard`, not `Launch Screen.storyboard`).
+  * Update `iosApp/iosApp/Info.plist`: Verify that the key `UILaunchStoryboardName` matches your storyboard filename exactly (without extension).
+
+### 🤖 Android
+
+1. **App Icon**:
+  * Place your standard icons in `composeApp/src/androidMain/res/mipmap-*` folders.
+  * **Adaptive Icons**: Update `ic_launcher_foreground.xml` (your logo) and `ic_launcher_background.xml` (your background color) in `composeApp/src/androidMain/res/drawable` or `mipmap-anydpi-v26`.
+2. **Splash Screen**:
+  * This project uses `androidx.core:core-splashscreen`.
+  * Update the `windowSplashScreenBackground` and `windowSplashScreenAnimatedIcon` colors/drawables in `composeApp/src/androidMain/res/values/styles.xml` (Theme `Theme.App.Starting`).
+
+---
+
+## 📦 Version Management
+
+All library and plugin versions are centralized in:
+
+```
+gradle/libs.versions.toml
+```
+
+Do not hardcode versions in `build.gradle.kts` files.
+
+---
+
+## 🤝 Author
+
+**Edu Alonso**

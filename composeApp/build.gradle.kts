@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibraryKmp)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -31,16 +32,19 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.compose.ui.tooling)
+            implementation(libs.androidx.core.splashscreen)
         }
         commonMain.dependencies {
+            implementation(project(":di"))
+            implementation(project(":feature:dashboard"))
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-
-            implementation(project(":di"))
+            implementation(libs.navigation.compose)
+            implementation(libs.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
