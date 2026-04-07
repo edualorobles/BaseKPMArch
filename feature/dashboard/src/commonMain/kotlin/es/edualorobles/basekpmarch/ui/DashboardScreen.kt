@@ -10,13 +10,17 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import es.edualorobles.basekpmarch.feature.dashboard.resources.Res
+import es.edualorobles.basekpmarch.feature.dashboard.resources.dashboard_title
+import es.edualorobles.basekpmarch.feature.dashboard.resources.dashboard_welcome
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen(){
+fun DashboardScreen() {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Dashboard") })
+            TopAppBar(title = { Text(stringResource(Res.string.dashboard_title)) })
         }
     ) { paddingValues ->
         Box(
@@ -25,7 +29,7 @@ fun DashboardScreen(){
                 .padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
-            Text("¡Bienvenido al Dashboard!")
+            Text(stringResource(Res.string.dashboard_welcome))
         }
     }
 }

@@ -1,13 +1,13 @@
 [versions]
-agp = "8.12.3"
-kotlin = "2.3.0"
+agp = "9.1.0"
+kotlin = "2.3.20"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
 
 # -- AndroidX & Compose --
-androidx-activity = "1.12.2"
-androidx-lifecycle = "2.9.6"
+androidx-activity = "1.13.0"
+androidx-lifecycle = "2.10.0"
 androidx-compose = "1.10.0"
 compose-material3 = "1.4.0"
 
@@ -15,14 +15,14 @@ compose-material3 = "1.4.0"
 composeMultiplatform = "1.9.3"
 coroutines = "1.10.2"
 datetime = "0.7.1"
-serialization = "1.9.0"
-navigationCompose = "2.9.1"
+serialization = "1.10.0"
+navigationCompose = "2.9.2"
 
 # -- Inyección de Dependencias --
 koin = "4.1.1"
 
 # --- Ktor (Networking) ---
-ktor = "3.3.3"
+ktor = "3.4.1"
 
 # ---Splash Screen ---
 coreSplashscreen = "1.2.0"
