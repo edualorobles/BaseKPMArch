@@ -9,10 +9,8 @@ kotlin {
         namespace = "es.edualorobles.basekpmarch.core.data"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
-        withJava()
     }
 
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
 

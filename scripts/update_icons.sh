@@ -45,7 +45,7 @@ resize() {
 if [[ -n "$ICON_SRC" ]]; then
     echo ""
     echo "→ Android launcher icons"
-    ANDROID_RES="$ROOT_DIR/composeApp/src/androidMain/res"
+    ANDROID_RES="$ROOT_DIR/androidApp/src/main/res"
 
     resize "$ICON_SRC" "$ANDROID_RES/mipmap-mdpi/ic_launcher.png"       48
     resize "$ICON_SRC" "$ANDROID_RES/mipmap-mdpi/ic_launcher_round.png" 48
@@ -61,8 +61,8 @@ if [[ -n "$ICON_SRC" ]]; then
     echo ""
     echo "  Note: the adaptive icon foreground/background are vectors."
     echo "  Edit these manually if needed:"
-    echo "    composeApp/src/androidMain/res/drawable/ic_launcher_background.xml"
-    echo "    composeApp/src/androidMain/res/drawable-v24/ic_launcher_foreground.xml"
+    echo "    androidApp/src/main/res/drawable/ic_launcher_background.xml"
+    echo "    androidApp/src/main/res/drawable-v24/ic_launcher_foreground.xml"
 fi
 
 # ─────────────────────────────────────────────

@@ -10,7 +10,6 @@ kotlin {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
 

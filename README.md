@@ -29,12 +29,12 @@ The project follows a **strict separation of responsibilities** to ensure scalab
 * **`:androidApp`**  
   Native Android launcher. Minimal configuration. Manages the native *Splash Screen* and initial lifecycle.
 
-* **`:composeApp`**  
-  Main shared library. Contains:
+* **`:shared`**  
+  Main shared library (KMP, `com.android.kotlin.multiplatform.library`). Contains:
+  - `App.kt` (shared Compose UI entry point)
   - `AppNavigation`
-  - `CompositionLocalProvider`
-  - Theme
-  - UI entry point
+  - `MainViewController` (iOS entry point, in `iosMain`)
+  - Theme and shared resources
 
 * **`:di` (Composition Root)**  
   The **only module that knows all others**.  
@@ -124,11 +124,12 @@ This project is configured with native Splash Screens for both platforms. Follow
 ### 🤖 Android
 
 1. **App Icon**:
-  * Place your standard icons in `composeApp/src/androidMain/res/mipmap-*` folders.
-  * **Adaptive Icons**: Update `ic_launcher_foreground.xml` (your logo) and `ic_launcher_background.xml` (your background color) in `composeApp/src/androidMain/res/drawable` or `mipmap-anydpi-v26`.
+  * Place your standard icons in `androidApp/src/main/res/mipmap-*` folders.
+  * **Adaptive Icons**: Update `ic_launcher_foreground.xml` (your logo) and `ic_launcher_background.xml` (your background color) in `androidApp/src/main/res/drawable` or `mipmap-anydpi-v26`.
+  * Or run `./scripts/update_icons.sh --icon path/to/icon.png` to auto-generate all sizes.
 2. **Splash Screen**:
   * This project uses `androidx.core:core-splashscreen`.
-  * Update the `windowSplashScreenBackground` and `windowSplashScreenAnimatedIcon` colors/drawables in `composeApp/src/androidMain/res/values/styles.xml` (Theme `Theme.App.Starting`).
+  * Update the `windowSplashScreenBackground` and `windowSplashScreenAnimatedIcon` colors/drawables in `androidApp/src/main/res/values/themes.xml` (Theme `Theme.App.Starting`).
 
 ---
 

@@ -1,6 +1,6 @@
 [versions]
-agp = "9.1.0"
-kotlin = "2.3.20"
+agp = "9.2.0"
+kotlin = "2.4.0"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
@@ -12,20 +12,23 @@ androidx-compose = "1.10.0"
 compose-material3 = "1.4.0"
 
 # -- KMP & Jetbrains --
-composeMultiplatform = "1.9.3"
-coroutines = "1.10.2"
-datetime = "0.7.1"
-serialization = "1.10.0"
+composeMultiplatform = "1.11.1"
+coroutines = "1.11.0"
+datetime = "0.8.0"
+serialization = "1.11.0"
 navigationCompose = "2.9.2"
 
 # -- Inyección de Dependencias --
-koin = "4.1.1"
+koin = "4.2.1"
 
 # --- Ktor (Networking) ---
-ktor = "3.4.1"
+ktor = "3.5.0"
 
 # ---Splash Screen ---
 coreSplashscreen = "1.2.0"
+
+# --- Testing ---
+junit = "4.13.2"
 
 [libraries]
 # --- Kotlin & Coroutines ---
@@ -67,6 +70,9 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 
 # ---Splash Screen ---
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+
+# --- Testing ---
+junit = { module = "junit:junit", version.ref = "junit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

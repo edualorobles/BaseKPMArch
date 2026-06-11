@@ -24,8 +24,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -35,12 +35,12 @@ android {
 
 kotlin {
     compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_1_8)
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
 dependencies {
-    implementation(project(":composeApp"))
+    implementation(project(":shared"))
     implementation(project(":di"))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.ui)
@@ -48,4 +48,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.koin.android)
+    implementation(libs.androidx.core.splashscreen)
+    testImplementation(libs.junit)
 }
