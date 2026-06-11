@@ -89,7 +89,9 @@ Always update versions in `libs.versions.toml`, never hardcode them in `build.gr
 
 ## Compose Resources
 
-Shared resources (images, strings, fonts) live in `shared/src/commonMain/composeResources/`. They are accessed via the generated public class `es.edualorobles.basekpmarch.resources`. Android KMP resources are enabled via `androidResources { enable = true }` in `shared/build.gradle.kts`.
+Shared resources (images, strings, fonts) live in `shared/src/commonMain/composeResources/`. They are accessed via the generated public class `es.edualorobles.basekpmarch.resources`.
+
+**Any KMP module with its own `composeResources/` (e.g. `feature:dashboard`, or any new `feature:*` module) MUST set `androidResources { enable = true }` inside `kotlin { android { ... } }` in its `build.gradle.kts`.** Without it, AGP does not package that module's `.cvr` resource assets into the final app APK, and any `stringResource(...)`/`painterResource(...)` call from that module crashes at runtime with `org.jetbrains.compose.resources.MissingResourceException` — even for the default (non-localized) resources, not just locale variants. Verify by checking the APK contains `assets/composeResources/<packageOfResClass>/...`.
 
 ## Setting Up a New Project From This Template
 
