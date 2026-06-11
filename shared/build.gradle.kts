@@ -29,7 +29,6 @@ kotlin {
 
     sourceSets {
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.compose.ui.tooling)
         }
         commonMain.dependencies {
@@ -40,7 +39,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(compose.preview)
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
         }
