@@ -1,14 +1,14 @@
 package es.edualorobles.basekpmarch
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import es.edualorobles.basekpmarch.navigation.AppNavigation
 import androidx.compose.ui.tooling.preview.Preview
+import es.edualorobles.basekpmarch.navigation.AppNavigation
+import es.edualorobles.basekpmarch.theme.AppTheme
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    AppTheme {
         AppNavigation()
     }
 }

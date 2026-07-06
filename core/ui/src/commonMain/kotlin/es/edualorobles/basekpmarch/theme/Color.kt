@@ -2,10 +2,18 @@ package es.edualorobles.basekpmarch.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Brand seed colors — the design token layer. Swap these values (and only these) to re-skin
+// the app; nothing outside this file should ever hardcode a Color.
+val BrandPrimary = Color(0xFF3B5BDB)
+val BrandOnPrimary = Color(0xFFFFFFFF)
+val BrandSecondary = Color(0xFF5C6BC0)
+val BrandOnSecondary = Color(0xFFFFFFFF)
+val BrandTertiary = Color(0xFF00897B)
+val BrandOnTertiary = Color(0xFFFFFFFF)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val BrandPrimaryDark = Color(0xFFAEC0FF)
+val BrandOnPrimaryDark = Color(0xFF1B2E7A)
+val BrandSecondaryDark = Color(0xFFC3CBFA)
+val BrandOnSecondaryDark = Color(0xFF2A3577)
+val BrandTertiaryDark = Color(0xFF4DB6AC)
+val BrandOnTertiaryDark = Color(0xFF00382F)

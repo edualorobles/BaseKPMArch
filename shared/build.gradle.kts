@@ -34,6 +34,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":di"))
             implementation(project(":feature:dashboard"))
+            implementation(project(":core:ui"))
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
